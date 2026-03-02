@@ -61,21 +61,56 @@
             color: #334155;
             font-size: 16px;
             line-height: 1.6;
+            text-align: center; /* 确保整体居中 */
         }
         .authors sup {
-            font-size: 12px;
-            color: #64748b;
+            font-size: 16px; /* 上标字号和作者名字匹配 */
+            color: #000000; /* 上标符号改成黑色 */
+            vertical-align: super; /* 强制上标对齐 */
+            position: relative;
+            top: -4px; /* 精准调整上标位置 */
+            left: 2px;
         }
         .author-notes {
-            font-size: 14px;
-            color: #64748b;
+            font-size: 16px; /* 备注文字字号加大 */
+            color: #000000; /* 备注文字改成黑色 */
             margin-top: 12px;
+            font-weight: 500; /* 轻微加粗更醒目 */
+        }
+        /* 作者名字仅加大字号 */
+        .author-name {
+            font-size: 30px; /* 字号加大，可按需调整 */
+            font-weight: 500;
+            display: inline-block;
+            margin: 0 4px;
+            position: relative; /* 确保上标定位基准 */
         }
         .button-group {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
+        }
+        /* 顶层切换按钮：榜单/数据（椭圆形+变大） */
+        .view-tab {
+            padding: 12px 60px !important; /* 变大：上下12px，左右36px */
+            border-radius: 50px !important; /* 椭圆形（50px 实现完美椭圆） */
+            border: none !important;
+            font-size: 20px !important; /* 字体变大 */
+            font-weight: 600 !important;
+            cursor: pointer;
+            transition: all 0.2s ease !important;
+        }
+
+        /* 模块切换按钮：EPIC-Bench/Target 等（椭圆形+变大） */
+        .data-btn {
+            padding: 12px 28px !important; /* 变大：上下12px，左右28px */
+            border-radius: 50px !important; /* 椭圆形 */
+            border: 1px solid #e2e8f0 !important;
+            font-size: 15px !important; /* 字体变大 */
+            font-weight: 600 !important;
+            cursor: pointer;
+            transition: all 0.2s ease !important;
         }
         .btn {
             display: inline-flex;
@@ -138,13 +173,7 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); } /* 向上弹起10px */
         }
-        /* 作者名字仅加大字号 */
-        .author-name {
-            font-size: 30px; /* 字号加大，可按需调整 */
-            font-weight: 500;
-            display: inline-block;
-            margin: 0 4px;
-        }
+
         
         /* Abstract 模块样式 */
         .abstract-section {
@@ -266,6 +295,34 @@
             border-radius: 8px;
             background: #e2e8f0;
         }
+        /* Citation模块下方的logo图片区域样式 */
+        .logos-section {
+            max-width: 1200px;
+            margin: 0 auto 60px; /* 和Citation模块保持相同的居中/间距规则 */
+            padding: 0 20px;
+            text-align: center; /* 新增：让内部的inline-flex容器居中 */
+        }
+
+        .logos-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px; /* 更小的间距，两张图更挨近 */
+        }
+
+        /* 可调节大小的图片样式 */
+        .logo-img {
+            width: 180px; /* 默认宽度，直接改数值就能调大小 */
+            height: auto; /* 保持宽高比，防止变形 */
+            object-fit: contain; /* 完整显示图片，不裁剪 */
+        }
+
+        /* 单独调整某张图片（如需差异化大小） */
+        .logo2-img {
+            /* 可单独设置宽度，比如 width: 150px; */
+        }
+        .logo1-img {
+            /* 可单独设置宽度，比如 width: 200px; */
+        }
     </style>
 </head>
 <body>
@@ -289,9 +346,9 @@
             <span class="author-name">xxx</span>
             <span class="author-name">xxx</span>
             <span class="author-name">xxx</span>
-            <span class="author-name">xxx</span><sup>‡</sup>
+            <span class="author-name">xxx</span><sup>†,</sup><sup>‡</sup>
             <div class="author-notes">
-                <sup>*</sup> Core contributors (alphabetical order) &nbsp; <sup>†</sup> Project lead &nbsp; <sup>‡</sup> Correspondence
+                <sup>*</sup> Core contributors &nbsp; <sup>†</sup> Project lead &nbsp; <sup>‡</sup> Correspondence
             </div>
         </div>
         <div class="button-group">
@@ -353,7 +410,7 @@
     <section class="overview-section">
         <h2 class="overview-title">Overview</h2>
         <img 
-            src="./img/20260302-192636.png" 
+            src="C:\Users\A\Desktop\leaderboard\20260302-192636.png" 
             alt="Leaderboard" 
             style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"
         >
@@ -453,20 +510,20 @@
     <!-- Data Example 模块 -->
     <!-- Data Example 模块 -->
     <section class="data-example-section" style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
-        <h2 class="data-example-title" style="font-size: 32px; font-weight: 700; color: #333; text-align: center; margin-bottom: 24px;">Data Example</h2>
+        <h2 class="data-example-title" style="font-size: 32px; font-weight: 700; color: #333; text-align: center; margin-bottom: 24px;">Leaderboard And Benchmark</h2>
 
         <!-- 顶层：榜单 / 数据 切换 -->
-        <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 20px;">
-            <button class="view-tab" id="tab-rank" style="padding: 10px 28px; border-radius: 8px; border: none; font-size: 15px; font-weight: 500; cursor: pointer; background: #1e40af; color: white;">🏆榜单</button>
-            <button class="view-tab" id="tab-data" style="padding: 10px 28px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 15px; font-weight: 500; cursor: pointer; background: #fff; color: #1e293b;">数据</button>
+        <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 20px;">
+            <button class="view-tab" id="tab-rank" style="background: #1e40af; color: white;">🏆榜单</button>
+            <button class="view-tab" id="tab-data" style="background: #fff; color: #1e293b;">数据</button>
         </div>
 
         <!-- 4个模块切换按钮 -->
-        <div class="data-button-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 24px;">
-            <button class="data-btn" id="btn-epic" style="padding: 10px 20px; background: white; color: #1e293b; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">EPIC-Bench</button>
-            <button class="data-btn" id="btn-target" style="padding: 10px 20px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">TargetLocalization-目标定位感知</button>
-            <button class="data-btn" id="btn-nav" style="padding: 10px 20px; background: white; color: #1e293b; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">Navigation-导航移动感知</button>
-            <button class="data-btn" id="btn-manip" style="padding: 10px 20px; background: white; color: #1e293b; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">Manipulation-操作感知</button>
+        <div class="data-button-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 24px;">
+            <button class="data-btn" id="btn-epic" style="background: #1e40af; color: white; border: none;">EPIC-Bench</button>
+            <button class="data-btn" id="btn-target" style="background: white; color: #1e293b;">TargetLocalization-目标定位感知</button>
+            <button class="data-btn" id="btn-nav" style="background: white; color: #1e293b;">Navigation-导航移动感知</button>
+            <button class="data-btn" id="btn-manip" style="background: white; color: #1e293b;">Manipulation-操作感知</button>
         </div>
 
         <!-- 表格 -->
@@ -481,7 +538,7 @@
     <script>
         // 全局状态
         let currentView = 'rank'; // rank | data
-        let currentModule = 'target';
+        let currentModule = 'epic';
 
         // 模型顺序【完全保持你原来的顺序不变】
         const fixedModelList = [
@@ -616,6 +673,7 @@
         }
 
         // 渲染表格内容：只改空值，顺序完全不变
+        // 渲染表格内容：只改空值，顺序完全不变 + 前三名添加奖牌
         function renderBody(module, view) {
             const tbody = document.getElementById('data-table-body');
             tbody.innerHTML = '';
@@ -626,15 +684,29 @@
                 const tr = document.createElement('tr');
                 tr.style.background = i % 2 === 0 ? '#fff' : '#f8fafc';
                 tr.style.borderBottom = '1px solid #e2e8f0';
+                
+                // 给前三名添加特殊样式
+                if (i === 0) tr.style.background = '#fff8e6'; // 金牌背景
+                if (i === 1) tr.style.background = '#f5f5f5'; // 银牌背景
+                if (i === 2) tr.style.background = '#fff3e0'; // 铜牌背景
 
                 columns.forEach((col, idx) => {
                     const td = document.createElement('td');
                     td.style.padding = '12px';
                     td.style.textAlign = 'center';
+                    
                     if (idx === 0) {
-                        td.textContent = model;
+                        // 第一列（Model）：添加奖牌 + 模型名
+                        let medal = '';
+                        if (i === 0) medal = '🥇 '; // 金牌
+                        if (i === 1) medal = '🥈 '; // 银牌
+                        if (i === 2) medal = '🥉 '; // 铜牌
+                        
+                        td.textContent = medal + model;
                         td.style.fontWeight = '500';
                         td.style.color = '#1e293b';
+                        // 前三名文字加粗
+                        if (i < 3) td.style.fontWeight = '700';
                     } else {
                         // 空值：榜单=-，数据=*
                         td.textContent = currentView === 'rank' ? '-' : '*';
@@ -694,6 +766,7 @@
         refreshTable();
     </script>
     <!-- Citation 模块 -->
+    <!-- Citation 模块 -->
     <section style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
     <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
         <div style="text-align: center; margin-bottom: 20px;">
@@ -712,14 +785,15 @@
     }
         </pre>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
-        <button style="background: none; border: none; cursor: pointer; color: #64748b; font-size: 16px;">◀</button>
-        <div style="flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px; margin: 0 12px; position: relative;">
-            <div style="width: 90%; height: 100%; background: #64748b; border-radius: 3px;"></div>
-        </div>
-        <button style="background: none; border: none; cursor: pointer; color: #64748b; font-size: 16px;">▶</button>
-        </div>
     </div>
+    </section>
+    <section class="logos-section">
+        <div class="logos-container">
+            <!-- 左侧：logo2.png -->
+            <img src="C:\Users\A\Desktop\leaderboard\img\logo2.png" alt="logo2" class="logo-img logo2-img">
+            <!-- 右侧：logo.png -->
+            <img src="C:\Users\A\Desktop\leaderboard\img\logo.png" alt="logo" class="logo-img logo1-img">
+        </div>
     </section>
     <!-- 版权信息 -->
     <footer style="width: 100%; padding: 30px 20px; text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0;">
