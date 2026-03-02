@@ -423,9 +423,9 @@
         <button class="data-btn" id="btn-manip" style="padding: 10px 20px; background: white; color: #1e293b; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">Manipulation-操作感知</button>
     </div>
 
-    <!-- 数据表格容器 -->
+    <!-- 数据表格容器（强化横向滚动） -->
     <div class="data-table-container" style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow-x: auto;">
-        <table id="data-table" style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 800px; text-align: center;">
+        <table id="data-table" style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1000px; text-align: center;">
         <thead id="data-table-header">
             <!-- JS 动态生成表头 -->
         </thead>
@@ -506,41 +506,69 @@
     "Cosmos-Reason1-7B"
     ];
 
-    // 所有列定义（全部改为居中对齐）
-    const allColumns = [
-    { key: 'Model', label: 'Model', align: 'center', minWidth: '200px' },
-    { key: 'Average', label: 'Average', align: 'center', minWidth: '100px' },
-    { key: 'Basic', label: 'Basic<br>基础属性(1599)', align: 'center', minWidth: '120px' },
-    { key: 'SpatialRelated', label: 'SpatialRelated<br>空间相关属性(1501)', align: 'center', minWidth: '120px' },
-    { key: 'EmbodiedCompositional', label: 'EmbodiedCompositional<br>具身组合属性(1291)', align: 'center', minWidth: '120px' },
-    { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', align: 'center', minWidth: '120px' },
-    { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', align: 'center', minWidth: '120px' },
-    { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', align: 'center', minWidth: '120px' },
-    { key: 'Affordance', label: 'Affordance<br>可供性(315)', align: 'center', minWidth: '120px' },
-    { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', align: 'center', minWidth: '120px' },
-    { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', align: 'center', minWidth: '120px' }
-    ];
-
-    // 各模块对应的列索引
-    const moduleColumns = {
-    'epic': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // Model + Average + 全部9个属性
-    'target': [0, 2, 3, 4], // Model + 前3个属性
-    'nav': [0, 5, 6, 7], // Model + 中间3个属性
-    'manip': [0, 8, 9, 10] // Model + 后3个属性
+    // 各模块独立的列配置（核心调整）
+    const moduleColumnConfigs = {
+    // EPIC-Bench 模块：Model + Average + 9个原属性
+    'epic': [
+        { key: 'Model', label: 'Model', minWidth: '200px' },
+        { key: 'Average', label: 'Average', minWidth: '100px' },
+        { key: 'Basic', label: 'Basic<br>基础属性(1599)', minWidth: '120px' },
+        { key: 'SpatialRelated', label: 'SpatialRelated<br>空间相关属性(1501)', minWidth: '120px' },
+        { key: 'EmbodiedCompositional', label: 'EmbodiedCompositional<br>具身组合属性(1291)', minWidth: '120px' },
+        { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', minWidth: '120px' },
+        { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', minWidth: '120px' },
+        { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', minWidth: '120px' },
+        { key: 'Affordance', label: 'Affordance<br>可供性(315)', minWidth: '120px' },
+        { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', minWidth: '120px' },
+        { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', minWidth: '120px' }
+    ],
+    // TargetLocalization 模块：Model + 14个新属性
+    'target': [
+        { key: 'Model', label: 'Model', minWidth: '200px' },
+        { key: 'Category', label: 'Category<br>基础类别', minWidth: '100px' },
+        { key: 'Color', label: 'Color<br>颜色', minWidth: '100px' },
+        { key: 'Geometry', label: 'Geometry<br>几何形状', minWidth: '100px' },
+        { key: 'Material', label: 'Material<br>材质', minWidth: '100px' },
+        { key: 'RelativePerception', label: 'RelativePerception<br>相对感官', minWidth: '120px' },
+        { key: 'ObjectProjections', label: 'ObjectProjections<br>本体/镜像', minWidth: '120px' },
+        { key: 'Orientation', label: 'Orientation<br>朝向', minWidth: '100px' },
+        { key: 'OrientationHuman', label: 'OrientationHuman<br>人类朝向', minWidth: '120px' },
+        { key: 'SpatialRelation', label: 'SpatialRelation<br>空间方位', minWidth: '120px' },
+        { key: 'SpatialRelationHuman', label: 'SpatialRelationHuman<br>与人相关空间方位', minWidth: '140px' },
+        { key: 'PartWhole', label: 'PartWhole<br>部分与整体', minWidth: '120px' },
+        { key: 'PartWholeHuman', label: 'PartWholeHuman<br>人体部位识别', minWidth: '120px' },
+        { key: 'ObjectState', label: 'ObjectState<br>目标状态', minWidth: '120px' },
+        { key: 'Spoken', label: 'Spoken<br>口语描述', minWidth: '100px' }
+    ],
+    // Navigation 模块：Model + 3个原属性
+    'nav': [
+        { key: 'Model', label: 'Model', minWidth: '200px' },
+        { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', minWidth: '120px' },
+        { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', minWidth: '120px' },
+        { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', minWidth: '120px' }
+    ],
+    // Manipulation 模块：Model + 3个原属性
+    'manip': [
+        { key: 'Model', label: 'Model', minWidth: '200px' },
+        { key: 'Affordance', label: 'Affordance<br>可供性(315)', minWidth: '120px' },
+        { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', minWidth: '120px' },
+        { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', minWidth: '120px' }
+    ]
     };
 
     // 渲染表头
-    function renderHeader(columnIndices) {
+    function renderHeader(module) {
     const thead = document.getElementById('data-table-header');
     thead.innerHTML = '';
     const headerRow = document.createElement('tr');
     headerRow.style.background = '#f1f5f9';
 
-    columnIndices.forEach(idx => {
-        const col = allColumns[idx];
+    // 获取当前模块的列配置
+    const columns = moduleColumnConfigs[module];
+    columns.forEach(col => {
         const th = document.createElement('th');
         th.style.padding = '12px';
-        th.style.textAlign = col.align;
+        th.style.textAlign = 'center';
         th.style.borderBottom = '2px solid #e2e8f0';
         th.style.fontWeight = '600';
         th.style.minWidth = col.minWidth;
@@ -551,22 +579,26 @@
     thead.appendChild(headerRow);
     }
 
-    // 渲染表体（全部居中对齐）
-    function renderBody(columnIndices) {
+    // 渲染表体
+    function renderBody(module) {
     const tbody = document.getElementById('data-table-body');
     tbody.innerHTML = '';
+
+    // 获取当前模块的列配置
+    const columns = moduleColumnConfigs[module];
 
     fixedModelList.forEach((model, index) => {
         const row = document.createElement('tr');
         row.style.background = index % 2 === 0 ? 'white' : '#f8fafc';
         row.style.borderBottom = '1px solid #e2e8f0';
 
-        columnIndices.forEach(idx => {
+        columns.forEach((col, idx) => {
         const td = document.createElement('td');
         td.style.padding = '12px';
-        td.style.textAlign = allColumns[idx].align; // 统一居中
+        td.style.textAlign = 'center';
         td.style.color = '#94a3b8';
 
+        // Model列特殊处理
         if (idx === 0) {
             td.style.fontWeight = '500';
             td.style.color = '#1e293b';
@@ -584,9 +616,8 @@
 
     // 切换模块
     function switchModule(module) {
-    const columnIndices = moduleColumns[module];
-    renderHeader(columnIndices);
-    renderBody(columnIndices);
+    renderHeader(module);
+    renderBody(module);
     }
 
     // 按钮点击事件
@@ -603,7 +634,7 @@
         btn.style.color = 'white';
         btn.style.border = 'none';
 
-        // 切换模块
+        // 切换对应模块
         if (btn.id === 'btn-epic') switchModule('epic');
         else if (btn.id === 'btn-target') switchModule('target');
         else if (btn.id === 'btn-nav') switchModule('nav');
