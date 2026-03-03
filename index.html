@@ -38,6 +38,15 @@
             color: white;
             font-size: 32px;
         }
+        /* 修改logo图片样式 */
+        .logo-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            /* 可根据需要调整最大宽度 */
+            max-width: 200px;
+        }
         .logo-text {
             font-size: 36px;
             font-weight: 700;
@@ -413,8 +422,9 @@
 </head>
 <body>
     <header class="rynn-header">
+        <!-- 修改logo部分：替换文字为图片 -->
         <div class="logo">
-            <div class="logo-text">EPIC-Bench</div>
+            <img src=".\img\20260303-134245.jpg" alt="EPIC-Bench Logo" class="logo-image">
         </div>
         <h1 class="title">
             <span class="epic-wrapper"><span class="epic-letter">E</span><span class="epic-letter">P</span><span class="epic-letter">I</span><span class="epic-letter">C</span></span>-Bench: <span> What Must LVLMs Perceive </span><br>
