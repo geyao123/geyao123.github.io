@@ -13,6 +13,7 @@
         }
         body {
             background: linear-gradient(135deg, #f0f4f8 0%, #e6e9f0 100%);
+            padding-top: 0;
         }
         .rynn-header {
             width: 100%;
@@ -61,29 +62,28 @@
             color: #334155;
             font-size: 16px;
             line-height: 1.6;
-            text-align: center; /* 确保整体居中 */
+            text-align: center;
         }
         .authors sup {
-            font-size: 16px; /* 上标字号和作者名字匹配 */
-            color: #000000; /* 上标符号改成黑色 */
-            vertical-align: super; /* 强制上标对齐 */
+            font-size: 16px;
+            color: #000000;
+            vertical-align: super;
             position: relative;
-            top: -4px; /* 精准调整上标位置 */
+            top: -4px;
             left: 2px;
         }
         .author-notes {
-            font-size: 16px; /* 备注文字字号加大 */
-            color: #000000; /* 备注文字改成黑色 */
+            font-size: 16px;
+            color: #000000;
             margin-top: 12px;
-            font-weight: 500; /* 轻微加粗更醒目 */
+            font-weight: 500;
         }
-        /* 作者名字仅加大字号 */
         .author-name {
-            font-size: 30px; /* 字号加大，可按需调整 */
+            font-size: 30px;
             font-weight: 500;
             display: inline-block;
             margin: 0 4px;
-            position: relative; /* 确保上标定位基准 */
+            position: relative;
         }
         .button-group {
             display: flex;
@@ -91,23 +91,20 @@
             justify-content: center;
             gap: 12px;
         }
-        /* 顶层切换按钮：榜单/数据（椭圆形+变大） */
         .view-tab {
-            padding: 12px 60px !important; /* 变大：上下12px，左右36px */
-            border-radius: 50px !important; /* 椭圆形（50px 实现完美椭圆） */
+            padding: 12px 60px !important;
+            border-radius: 50px !important;
             border: none !important;
-            font-size: 20px !important; /* 字体变大 */
+            font-size: 20px !important;
             font-weight: 600 !important;
             cursor: pointer;
             transition: all 0.2s ease !important;
         }
-
-        /* 模块切换按钮：EPIC-Bench/Target 等（椭圆形+变大） */
         .data-btn {
-            padding: 12px 28px !important; /* 变大：上下12px，左右28px */
-            border-radius: 50px !important; /* 椭圆形 */
+            padding: 12px 28px !important;
+            border-radius: 50px !important;
             border: 1px solid #e2e8f0 !important;
-            font-size: 15px !important; /* 字体变大 */
+            font-size: 15px !important;
             font-weight: 600 !important;
             cursor: pointer;
             transition: all 0.2s ease !important;
@@ -143,14 +140,11 @@
             font-size: 10px;
             margin-left: 4px;
         }
-        /* EPIC 跳动动画 */
-        /* EPIC 逐字母跳动动画 */
         .epic-wrapper {
             display: inline-block;
-            letter-spacing: -1px; /* 消除字母间距，可根据需要调-2px/-3px */
-            white-space: nowrap;   /* 防止字母换行 */
+            letter-spacing: -1px;
+            white-space: nowrap;
         }
-
         .epic-letter {
             display: inline-block;
             background: linear-gradient(90deg, #ef4444, #fbbf24, #3b82f6, #a855f7);
@@ -158,24 +152,17 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: bounce 1.5s ease-in-out infinite;
-            /* 移除可能导致间距的 margin/padding */
             margin: 0;
             padding: 0;
         }
-
-        /* 给每个字母设置不同的动画延迟，实现顺序跳动 */
-        .epic-letter:nth-child(1) { animation-delay: 0s; }   /* E 先跳 */
-        .epic-letter:nth-child(2) { animation-delay: 0.15s; }/* P 延迟0.15s */
-        .epic-letter:nth-child(3) { animation-delay: 0.3s; } /* I 延迟0.3s */
-        .epic-letter:nth-child(4) { animation-delay: 0.45s; }/* C 延迟0.45s */
-
+        .epic-letter:nth-child(1) { animation-delay: 0s; }
+        .epic-letter:nth-child(2) { animation-delay: 0.15s; }
+        .epic-letter:nth-child(3) { animation-delay: 0.3s; }
+        .epic-letter:nth-child(4) { animation-delay: 0.45s; }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); } /* 向上弹起10px */
+            50% { transform: translateY(-10px); }
         }
-
-        
-        /* Abstract 模块样式 */
         .abstract-section {
             max-width: 1200px;
             margin: 0 auto 60px;
@@ -226,8 +213,6 @@
             display: block;
             margin-bottom: 4px;
         }
-
-        /* Overview 模块样式 */
         .overview-section {
             max-width: 1200px;
             margin: 0 auto 60px;
@@ -295,33 +280,134 @@
             border-radius: 8px;
             background: #e2e8f0;
         }
-        /* Citation模块下方的logo图片区域样式 */
         .logos-section {
             max-width: 1200px;
-            margin: 0 auto 60px; /* 和Citation模块保持相同的居中/间距规则 */
+            margin: 0 auto 60px;
             padding: 0 20px;
-            text-align: center; /* 新增：让内部的inline-flex容器居中 */
+            text-align: center;
         }
-
         .logos-container {
             display: inline-flex;
             align-items: center;
-            gap: 10px; /* 更小的间距，两张图更挨近 */
+            gap: 10px;
         }
-
-        /* 可调节大小的图片样式 */
         .logo-img {
-            width: 180px; /* 默认宽度，直接改数值就能调大小 */
-            height: auto; /* 保持宽高比，防止变形 */
-            object-fit: contain; /* 完整显示图片，不裁剪 */
+            width: 180px;
+            height: auto;
+            object-fit: contain;
         }
-
-        /* 单独调整某张图片（如需差异化大小） */
         .logo2-img {
-            /* 可单独设置宽度，比如 width: 150px; */
         }
         .logo1-img {
-            /* 可单独设置宽度，比如 width: 200px; */
+        }
+        #sticky-nav-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        #sticky-nav-clone {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6e9f0 100%);
+            padding: 16px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        /* 排序相关样式 */
+        .sortable-header {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 20px !important;
+        }
+        .sortable-header:hover {
+            background-color: #e2e8f0;
+        }
+        .sort-indicator {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #64748b;
+        }
+        /* 排名数字样式 */
+        .rank-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            color: #1e293b;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        /* 奖牌样式 */
+        .medal-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        /* 新的外层容器，用于定位箭头 */
+        .table-scroll-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 分页箭头样式 - 红框位置版 */
+        .data-table-container {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+        .pagination-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #1e40af; /* 蓝色背景 */
+            color: white;         /* 白色箭头 */
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+        }
+        .pagination-arrow.left {
+            left: -45px; /* 向左移动，放在表格左侧红框内 */
+        }
+        .pagination-arrow.right {
+            right: -45px; /* 向右移动，放在表格右侧红框内 */
+        }
+        .pagination-arrow:hover {
+            background: #1e3a8a; /* 更深的蓝色 */
+        }
+        .pagination-arrow:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #94a3b8;
+            color: white;
         }
     </style>
 </head>
@@ -361,52 +447,16 @@
                 Paper
             </a>
             <a href="#" class="btn" style="background: #fbbf24; color: #ffffff; border-color: #fbbf24;">
-                <!-- 直接用文本笑脸 😊，替代 SVG 图标 -->
-                <span style="font-size: 16px; margin-right: 8px;">😊</span>
+                <span style="font-size: 16px; margin-right: 8px;">🤗</span>
                 Huggingface
             </a>
             <a href="#" class="btn" style="background: #3b82f6; color: #ffffff; border-color: #3b82f6;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <img src=".\img\screenshot-20260303-101720.png" alt="modelscope" style="width: 24px; height: 24px; margin-right: 8px; object-fit: contain; vertical-align: middle;">
                 modelscope
             </a>
         </div>
     </header>
 
-    <!-- Abstract 模块 -->
-    <!--section class="abstract-section">
-        <h2 class="abstract-title">Abstract</h2>
-        <div class="abstract-card">
-            <div class="abstract-text">
-                <p>We present RynnBrain, an embodied foundation model grounded in physical reality. Moving beyond passive observation, RynnBrain anchors its understanding in the physical world through comprehensive egocentric cognition, precise spatiotemporal grounding, and real task planning. This systematic upgrade enables active, physics-aware reasoning and complex task execution.</p>
-                <p style="margin-top: 12px;">We release RynnBrain in dense (2B, 8B) and MoE (30B) variants, alongside three specialized models: RynnBrain-Plan (manipulation planning), RynnBrain-Nav (navigation), and RynnBrain-CoP (spatial reasoning).</p>
-            </div>
-            <div class="key-highlights">
-                <h3>
-                    <span>☀️</span> Key Highlights
-                </h3>
-                <ul>
-                    <li>
-                        <strong>Comprehensive Egocentric Understanding:</strong>
-                        Excels in fine-grained video understanding and egocentric cognition, covering diverse tasks such as embodied QA, counting, and OCR.
-                    </li>
-                    <li>
-                        <strong>Diverse Spatiotemporal Localization:</strong>
-                        Possesses powerful localization capabilities across episodic memory, enabling precise identification of objects, target areas, and motion trajectories.
-                    </li>
-                    <li>
-                        <strong>Physical-Space Reasoning:</strong>
-                        Interleaves textual and spatial grounding to anchor reasoning firmly in physical reality.
-                    </li>
-                    <li>
-                        <strong>Physics-Aware Planning:</strong>
-                        Integrates localized affordances and object info into planning, enabling downstream VLA models to execute intricate tasks.
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Overview 模块 -->
     <section class="overview-section">
         <h2 class="overview-title">Overview</h2>
         <img 
@@ -415,7 +465,6 @@
             style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"
         >
         <div class="overview-grid">
-            <!-- Cognition 卡片 -->
             <div class="overview-card cognition">
                 <h3>Cognition</h3>
                 <div class="overview-item">
@@ -456,7 +505,6 @@
                 </div>
             </div>
 
-            <!-- Location 卡片 -->
             <div class="overview-card location">
                 <h3>Location</h3>
                 <div class="overview-item">
@@ -507,40 +555,52 @@
             </div>
         </div>
     </section>
-    <!-- Data Example 模块 -->
-    <!-- Data Example 模块 -->
+
     <section class="data-example-section" style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
         <h2 class="data-example-title" style="font-size: 32px; font-weight: 700; color: #333; text-align: center; margin-bottom: 24px;">Leaderboard And Benchmark</h2>
 
-        <!-- 顶层：榜单 / 数据 切换 -->
         <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 20px;">
             <button class="view-tab" id="tab-rank" style="background: #1e40af; color: white;">🏆榜单</button>
             <button class="view-tab" id="tab-data" style="background: #fff; color: #1e293b;">数据</button>
         </div>
 
-        <!-- 4个模块切换按钮 -->
-        <div class="data-button-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 24px;">
+        <div id="sticky-nav-wrapper" class="data-button-group">
             <button class="data-btn" id="btn-epic" style="background: #1e40af; color: white; border: none;">EPIC-Bench</button>
             <button class="data-btn" id="btn-target" style="background: white; color: #1e293b;">TargetLocalization-目标定位感知</button>
             <button class="data-btn" id="btn-nav" style="background: white; color: #1e293b;">Navigation-导航移动感知</button>
             <button class="data-btn" id="btn-manip" style="background: white; color: #1e293b;">Manipulation-操作感知</button>
         </div>
 
-        <!-- 表格 -->
-        <div class="data-table-container" style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow-x: auto;">
-            <table id="data-table" style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1000px; text-align: center;">
-                <thead id="data-table-header"></thead>
-                <tbody id="data-table-body"></tbody>
-            </table>
+        <!-- 新的外层容器 -->
+        <div class="table-scroll-wrapper">
+            <!-- 左箭头 - 固定在红框位置 -->
+            <button class="pagination-arrow left" id="prev-page">←</button>
+            <!-- 表格容器 -->
+            <div class="data-table-container">
+                <table id="data-table" style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1000px; text-align: center;">
+                    <thead id="data-table-header"></thead>
+                    <tbody id="data-table-body"></tbody>
+                </table>
+            </div>
+            <!-- 右箭头 - 固定在红框位置 -->
+            <button class="pagination-arrow right" id="next-page">→</button>
         </div>
     </section>
+
+    <div id="sticky-nav-clone"></div>
 
     <script>
         // 全局状态
         let currentView = 'rank'; // rank | data
         let currentModule = 'epic';
-
-        // 模型顺序【完全保持你原来的顺序不变】
+        // 排序相关全局变量
+        let sortKey = 'Average'; // 默认排序字段
+        let sortDirection = 'desc'; // 默认降序（从高到低）
+        // 分页相关变量
+        let pageSize = 35; // 每页显示35个模型
+        let currentPage = 1; // 当前页码
+        
+        // 模型列表
         const fixedModelList = [
             "Qwen3.5-397B-A17B",
             "Qwen3.5-122B-A10B",
@@ -609,50 +669,115 @@
             "Cosmos-Reason1-7B"
         ];
 
+        // 生成模拟分数数据（0-100）
+        function generateMockScores() {
+            const mockScores = {};
+            fixedModelList.forEach(model => {
+                mockScores[model] = {
+                    Average: Math.floor(Math.random() * 100),
+                    Basic: Math.floor(Math.random() * 100),
+                    SpatialRelated: Math.floor(Math.random() * 100),
+                    EmbodiedCompositional: Math.floor(Math.random() * 100),
+                    GroundDetection: Math.floor(Math.random() * 100),
+                    FeasiblePath: Math.floor(Math.random() * 100),
+                    VisualMatching: Math.floor(Math.random() * 100),
+                    Affordance: Math.floor(Math.random() * 100),
+                    ContactRelationship: Math.floor(Math.random() * 100),
+                    PlacementRegion: Math.floor(Math.random() * 100),
+                    Category: Math.floor(Math.random() * 100),
+                    Color: Math.floor(Math.random() * 100),
+                    Geometry: Math.floor(Math.random() * 100),
+                    Material: Math.floor(Math.random() * 100),
+                    RelativePerception: Math.floor(Math.random() * 100),
+                    ObjectProjections: Math.floor(Math.random() * 100),
+                    Orientation: Math.floor(Math.random() * 100),
+                    OrientationHuman: Math.floor(Math.random() * 100),
+                    SpatialRelation: Math.floor(Math.random() * 100),
+                    SpatialRelationHuman: Math.floor(Math.random() * 100),
+                    PartWhole: Math.floor(Math.random() * 100),
+                    PartWholeHuman: Math.floor(Math.random() * 100),
+                    ObjectState: Math.floor(Math.random() * 100),
+                    Spoken: Math.floor(Math.random() * 100)
+                };
+            });
+            return mockScores;
+        }
+        const modelScores = generateMockScores();
+
+        // 列配置
         const moduleColumnConfigs = {
             'epic': [
-                { key: 'Model', label: 'Model', minWidth: '200px' },
-                { key: 'Average', label: 'Average', minWidth: '100px' },
-                { key: 'Basic', label: 'Basic<br>基础属性(1599)', minWidth: '120px' },
-                { key: 'SpatialRelated', label: 'SpatialRelated<br>空间相关属性(1501)', minWidth: '120px' },
-                { key: 'EmbodiedCompositional', label: 'EmbodiedCompositional<br>具身组合属性(1291)', minWidth: '120px' },
-                { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', minWidth: '120px' },
-                { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', minWidth: '120px' },
-                { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', minWidth: '120px' },
-                { key: 'Affordance', label: 'Affordance<br>可供性(315)', minWidth: '120px' },
-                { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', minWidth: '120px' },
-                { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', minWidth: '120px' }
+                { key: 'Model', label: 'Model', minWidth: '200px', sortable: false },
+                { key: 'Average', label: 'Average', minWidth: '100px', sortable: true },
+                { key: 'Basic', label: 'Basic<br>基础属性(1599)', minWidth: '120px', sortable: true },
+                { key: 'SpatialRelated', label: 'SpatialRelated<br>空间相关属性(1501)', minWidth: '120px', sortable: true },
+                { key: 'EmbodiedCompositional', label: 'EmbodiedCompositional<br>具身组合属性(1291)', minWidth: '120px', sortable: true },
+                { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', minWidth: '120px', sortable: true },
+                { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', minWidth: '120px', sortable: true },
+                { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', minWidth: '120px', sortable: true },
+                { key: 'Affordance', label: 'Affordance<br>可供性(315)', minWidth: '120px', sortable: true },
+                { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', minWidth: '120px', sortable: true },
+                { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', minWidth: '120px', sortable: true }
             ],
             'target': [
-                { key: 'Model', label: 'Model', minWidth: '200px' },
-                { key: 'Category', label: 'Category<br>基础类别', minWidth: '100px' },
-                { key: 'Color', label: 'Color<br>颜色', minWidth: '100px' },
-                { key: 'Geometry', label: 'Geometry<br>几何形状', minWidth: '100px' },
-                { key: 'Material', label: 'Material<br>材质', minWidth: '100px' },
-                { key: 'RelativePerception', label: 'RelativePerception<br>相对感官', minWidth: '120px' },
-                { key: 'ObjectProjections', label: 'ObjectProjections<br>本体/镜像', minWidth: '120px' },
-                { key: 'Orientation', label: 'Orientation<br>朝向', minWidth: '100px' },
-                { key: 'OrientationHuman', label: 'OrientationHuman<br>人类朝向', minWidth: '120px' },
-                { key: 'SpatialRelation', label: 'SpatialRelation<br>空间方位', minWidth: '120px' },
-                { key: 'SpatialRelationHuman', label: 'SpatialRelationHuman<br>与人相关空间方位', minWidth: '140px' },
-                { key: 'PartWhole', label: 'PartWhole<br>部分与整体', minWidth: '120px' },
-                { key: 'PartWholeHuman', label: 'PartWholeHuman<br>人体部位识别', minWidth: '120px' },
-                { key: 'ObjectState', label: 'ObjectState<br>目标状态', minWidth: '120px' },
-                { key: 'Spoken', label: 'Spoken<br>口语描述', minWidth: '100px' }
+                { key: 'Model', label: 'Model', minWidth: '200px', sortable: false },
+                { key: 'Category', label: 'Category<br>基础类别', minWidth: '100px', sortable: true },
+                { key: 'Color', label: 'Color<br>颜色', minWidth: '100px', sortable: true },
+                { key: 'Geometry', label: 'Geometry<br>几何形状', minWidth: '100px', sortable: true },
+                { key: 'Material', label: 'Material<br>材质', minWidth: '100px', sortable: true },
+                { key: 'RelativePerception', label: 'RelativePerception<br>相对感官', minWidth: '120px', sortable: true },
+                { key: 'ObjectProjections', label: 'ObjectProjections<br>本体/镜像', minWidth: '120px', sortable: true },
+                { key: 'Orientation', label: 'Orientation<br>朝向', minWidth: '100px', sortable: true },
+                { key: 'OrientationHuman', label: 'OrientationHuman<br>人类朝向', minWidth: '120px', sortable: true },
+                { key: 'SpatialRelation', label: 'SpatialRelation<br>空间方位', minWidth: '120px', sortable: true },
+                { key: 'SpatialRelationHuman', label: 'SpatialRelationHuman<br>与人相关空间方位', minWidth: '140px', sortable: true },
+                { key: 'PartWhole', label: 'PartWhole<br>部分与整体', minWidth: '120px', sortable: true },
+                { key: 'PartWholeHuman', label: 'PartWholeHuman<br>人体部位识别', minWidth: '120px', sortable: true },
+                { key: 'ObjectState', label: 'ObjectState<br>目标状态', minWidth: '120px', sortable: true },
+                { key: 'Spoken', label: 'Spoken<br>口语描述', minWidth: '100px', sortable: true }
             ],
             'nav': [
-                { key: 'Model', label: 'Model', minWidth: '200px' },
-                { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', minWidth: '120px' },
-                { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', minWidth: '120px' },
-                { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', minWidth: '120px' }
+                { key: 'Model', label: 'Model', minWidth: '200px', sortable: false },
+                { key: 'GroundDetection', label: 'GroundDetection<br>地面识别(391)', minWidth: '120px', sortable: true },
+                { key: 'FeasiblePath', label: 'FeasiblePath<br>可行路径感知(482)', minWidth: '120px', sortable: true },
+                { key: 'VisualMatching', label: 'VisualMatching<br>视觉匹配(352)', minWidth: '120px', sortable: true }
             ],
             'manip': [
-                { key: 'Model', label: 'Model', minWidth: '200px' },
-                { key: 'Affordance', label: 'Affordance<br>可供性(315)', minWidth: '120px' },
-                { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', minWidth: '120px' },
-                { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', minWidth: '120px' }
+                { key: 'Model', label: 'Model', minWidth: '200px', sortable: false },
+                { key: 'Affordance', label: 'Affordance<br>可供性(315)', minWidth: '120px', sortable: true },
+                { key: 'ContactRelationship', label: 'ContactRelationship<br>接触关系(292)', minWidth: '120px', sortable: true },
+                { key: 'PlacementRegion', label: 'PlacementRegion<br>放置区域(402)', minWidth: '120px', sortable: true }
             ]
         };
+
+        // 排序函数
+        function sortModels(module, key, direction) {
+            const modelsWithScores = fixedModelList.filter(model => modelScores[model]);
+            
+            return modelsWithScores.sort((a, b) => {
+                const scoreA = modelScores[a][key] || 0;
+                const scoreB = modelScores[b][key] || 0;
+                
+                if (direction === 'asc') {
+                    return scoreA - scoreB; // 升序
+                } else {
+                    return scoreB - scoreA; // 降序
+                }
+            });
+        }
+
+        // 更新分页按钮状态
+        function updatePaginationButtons() {
+            const sortedModels = sortModels(currentModule, sortKey, sortDirection);
+            const totalPages = Math.ceil(sortedModels.length / pageSize);
+            
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+            
+            // 禁用/启用按钮
+            prevBtn.disabled = currentPage <= 1;
+            nextBtn.disabled = currentPage >= totalPages;
+        }
 
         // 渲染表头
         function renderHeader(module) {
@@ -660,6 +785,7 @@
             thead.innerHTML = '';
             const tr = document.createElement('tr');
             tr.style.background = '#f1f5f9';
+            
             moduleColumnConfigs[module].forEach(col => {
                 const th = document.createElement('th');
                 th.style.padding = '12px';
@@ -667,28 +793,66 @@
                 th.style.fontWeight = '600';
                 th.style.minWidth = col.minWidth;
                 th.innerHTML = col.label;
+                
+                if (col.sortable) {
+                    th.classList.add('sortable-header');
+                    th.setAttribute('data-sort-key', col.key);
+                    
+                    const indicator = document.createElement('span');
+                    indicator.className = 'sort-indicator';
+                    if (col.key === sortKey) {
+                        indicator.textContent = sortDirection === 'asc' ? '↑' : '↓';
+                        th.style.color = '#1e40af';
+                        th.style.fontWeight = '700';
+                    } else {
+                        indicator.textContent = '↕';
+                    }
+                    th.appendChild(indicator);
+                    
+                    th.addEventListener('click', () => {
+                        if (col.key === sortKey) {
+                            sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                        } else {
+                            sortKey = col.key;
+                            sortDirection = 'desc';
+                        }
+                        // 排序后重置到第一页
+                        currentPage = 1;
+                        refreshTable();
+                    });
+                }
+                
                 tr.appendChild(th);
             });
+            
             thead.appendChild(tr);
         }
 
-        // 渲染表格内容：只改空值，顺序完全不变
-        // 渲染表格内容：只改空值，顺序完全不变 + 前三名添加奖牌
+        // 渲染表格内容（带分页）
         function renderBody(module, view) {
             const tbody = document.getElementById('data-table-body');
             tbody.innerHTML = '';
             const columns = moduleColumnConfigs[module];
+            const sortedModels = sortModels(module, sortKey, sortDirection);
+            
+            // 计算分页
+            const total = sortedModels.length;
+            const totalPages = Math.ceil(total / pageSize);
+            const start = (currentPage - 1) * pageSize;
+            const end = Math.min(start + pageSize, total);
+            const pageModels = sortedModels.slice(start, end);
 
-            // 严格按 fixedModelList 顺序遍历
-            fixedModelList.forEach((model, i) => {
+            pageModels.forEach((model, idxInPage) => {
+                // 计算全局索引（用于排名和奖牌）
+                const globalIdx = start + idxInPage;
                 const tr = document.createElement('tr');
-                tr.style.background = i % 2 === 0 ? '#fff' : '#f8fafc';
+                tr.style.background = idxInPage % 2 === 0 ? '#fff' : '#f8fafc';
                 tr.style.borderBottom = '1px solid #e2e8f0';
                 
-                // 给前三名添加特殊样式
-                if (i === 0) tr.style.background = '#fff8e6'; // 金牌背景
-                if (i === 1) tr.style.background = '#f5f5f5'; // 银牌背景
-                if (i === 2) tr.style.background = '#fff3e0'; // 铜牌背景
+                // 前三名背景色
+                if (globalIdx === 0) tr.style.background = '#fff8e6';
+                if (globalIdx === 1) tr.style.background = '#f5f5f5';
+                if (globalIdx === 2) tr.style.background = '#fff3e0';
 
                 columns.forEach((col, idx) => {
                     const td = document.createElement('td');
@@ -696,35 +860,71 @@
                     td.style.textAlign = 'center';
                     
                     if (idx === 0) {
-                        // 第一列（Model）：添加奖牌 + 模型名
-                        let medal = '';
-                        if (i === 0) medal = '🥇 '; // 金牌
-                        if (i === 1) medal = '🥈 '; // 银牌
-                        if (i === 2) medal = '🥉 '; // 铜牌
+                        // 第一列：排名数字 + 奖牌 + 模型名
+                        const rankNumber = document.createElement('span');
+                        rankNumber.className = 'rank-number';
+                        rankNumber.textContent = globalIdx + 1;
+                        td.appendChild(rankNumber);
                         
-                        td.textContent = medal + model;
+                        // 添加奖牌图标（前三名）
+                        let medal = '';
+                        if (globalIdx === 0) medal = '🥇 ';
+                        if (globalIdx === 1) medal = '🥈 ';
+                        if (globalIdx === 2) medal = '🥉 ';
+                        
+                        td.appendChild(document.createTextNode(medal + model));
                         td.style.fontWeight = '500';
                         td.style.color = '#1e293b';
-                        // 前三名文字加粗
-                        if (i < 3) td.style.fontWeight = '700';
+                        if (globalIdx < 3) td.style.fontWeight = '700';
                     } else {
-                        // 空值：榜单=-，数据=*
-                        td.textContent = currentView === 'rank' ? '-' : '*';
-                        td.style.color = '#94a3b8';
+                        if (view === 'rank') {
+                            const score = modelScores[model][col.key] || '-';
+                            td.textContent = score;
+                            td.style.color = '#1e293b';
+                            if (globalIdx < 3) td.style.fontWeight = '600';
+                        } else {
+                            td.textContent = '*';
+                            td.style.color = '#94a3b8';
+                        }
                     }
                     tr.appendChild(td);
                 });
                 tbody.appendChild(tr);
             });
+            
+            // 更新分页按钮状态
+            updatePaginationButtons();
         }
 
-        // 刷新整个表格
+        // 刷新表格
         function refreshTable() {
             renderHeader(currentModule);
             renderBody(currentModule, currentView);
         }
 
-        // 顶层视图切换：榜单 / 数据
+        // 绑定分页按钮事件
+        function bindPaginationEvents() {
+            // 上一页
+            document.getElementById('prev-page').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    refreshTable();
+                }
+            });
+            
+            // 下一页
+            document.getElementById('next-page').addEventListener('click', () => {
+                const sortedModels = sortModels(currentModule, sortKey, sortDirection);
+                const totalPages = Math.ceil(sortedModels.length / pageSize);
+                
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    refreshTable();
+                }
+            });
+        }
+
+        // 榜单/数据切换
         document.querySelectorAll('.view-tab').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.view-tab').forEach(b => {
@@ -737,65 +937,125 @@
                 btn.style.border = 'none';
 
                 currentView = btn.id === 'tab-rank' ? 'rank' : 'data';
+                // 切换视图后重置到第一页
+                currentPage = 1;
                 refreshTable();
             });
         });
 
         // 模块切换
-        document.querySelectorAll('.data-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.data-btn').forEach(b => {
-                    b.style.background = '#fff';
-                    b.style.color = '#1e293b';
-                    b.style.border = '1px solid #e2e8f0';
+        function bindButtonEvents() {
+            document.querySelectorAll('.data-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.data-btn, #sticky-nav-clone .data-btn').forEach(b => {
+                        b.style.background = '#fff';
+                        b.style.color = '#1e293b';
+                        b.style.border = '1px solid #e2e8f0';
+                    });
+                    btn.style.background = '#1e40af';
+                    btn.style.color = '#fff';
+                    btn.style.border = 'none';
+                    
+                    const cloneBtn = document.querySelector(`#sticky-nav-clone #${btn.id}`);
+                    if (cloneBtn) {
+                        cloneBtn.style.background = '#1e40af';
+                        cloneBtn.style.color = '#fff';
+                        cloneBtn.style.border = 'none';
+                    }
+
+                    if (btn.id === 'btn-epic') currentModule = 'epic';
+                    else if (btn.id === 'btn-target') currentModule = 'target';
+                    else if (btn.id === 'btn-nav') currentModule = 'nav';
+                    else if (btn.id === 'btn-manip') currentModule = 'manip';
+
+                    const firstSortableCol = moduleColumnConfigs[currentModule].find(col => col.sortable);
+                    if (firstSortableCol) {
+                        sortKey = firstSortableCol.key;
+                        sortDirection = 'desc';
+                    }
+                    
+                    // 切换模块后重置到第一页
+                    currentPage = 1;
+                    refreshTable();
                 });
-                btn.style.background = '#1e40af';
-                btn.style.color = '#fff';
-                btn.style.border = 'none';
-
-                if (btn.id === 'btn-epic') currentModule = 'epic';
-                else if (btn.id === 'btn-target') currentModule = 'target';
-                else if (btn.id === 'btn-nav') currentModule = 'nav';
-                else if (btn.id === 'btn-manip') currentModule = 'manip';
-
-                refreshTable();
             });
-        });
 
-        // 默认加载
-        refreshTable();
+            document.querySelectorAll('#sticky-nav-clone .data-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const originalBtn = document.querySelector(`#sticky-nav-wrapper #${btn.id}`);
+                    if (originalBtn) {
+                        originalBtn.click();
+                    }
+                });
+            });
+        }
+
+        // 粘性导航
+        function initStickyNav() {
+            const stickyWrapper = document.getElementById('sticky-nav-wrapper');
+            const stickyClone = document.getElementById('sticky-nav-clone');
+            const dataSection = document.querySelector('.data-example-section');
+            
+            stickyClone.innerHTML = stickyWrapper.innerHTML;
+            
+            function checkSticky() {
+                const sectionRect = dataSection.getBoundingClientRect();
+                const wrapperRect = stickyWrapper.getBoundingClientRect();
+                
+                if (sectionRect.top <= window.innerHeight && wrapperRect.top <= 0) {
+                    stickyClone.style.display = 'flex';
+                } else {
+                    stickyClone.style.display = 'none';
+                }
+            }
+
+            bindButtonEvents();
+            window.addEventListener('scroll', checkSticky);
+            checkSticky();
+        }
+
+        // 初始化
+        function init() {
+            // 绑定分页事件
+            bindPaginationEvents();
+            // 初始化粘性导航
+            initStickyNav();
+            // 刷新表格
+            refreshTable();
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', init);
     </script>
-    <!-- Citation 模块 -->
-    <!-- Citation 模块 -->
+
     <section style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
-    <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-        <div style="text-align: center; margin-bottom: 20px;">
-        <span style="font-size: 28px; font-weight: 700; color: #333; display: inline-flex; align-items: center; gap: 8px;">
-            📝 Citation
-        </span>
-        <div style="width: 60%; height: 4px; background: linear-gradient(90deg, #4ade80, #f87171); margin: 8px auto 0; border-radius: 2px;"></div>
-        </div>
-        <div style="background: #f8fafc; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 14px; line-height: 1.6; color: #1e293b; overflow-x: auto;">
-        <pre style="margin: 0;">
+        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span style="font-size: 28px; font-weight: 700; color: #333; display: inline-flex; align-items: center; gap: 8px;">
+                    📝 Citation
+                </span>
+                <div style="width: 60%; height: 4px; background: linear-gradient(90deg, #4ade80, #f87171); margin: 8px auto 0; border-radius: 2px;"></div>
+            </div>
+            <div style="background: #f8fafc; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 14px; line-height: 1.6; color: #1e293b; overflow-x: auto;">
+                <pre style="margin: 0;">
     @article{xie2025core,
     title={CORE: Benchmarking LLMs Code Reasoning Capabilities through Static Analysis Tasks},
     author={Xie, Danning and Zheng, Mingwei and Liu, Xuwei and Wang, Jiannan and Wang, Chengpeng and Tan, Lin and Zhang, ...},
     journal={arXiv preprint arXiv:2507.05269},
     year={2025}
     }
-        </pre>
+                </pre>
+            </div>
         </div>
-    </div>
     </section>
+
     <section class="logos-section">
         <div class="logos-container">
-            <!-- 左侧：logo2.png -->
             <img src=".\img\logo2.png" alt="logo2" class="logo-img logo2-img">
-            <!-- 右侧：logo.png -->
             <img src=".\img\logo.png" alt="logo" class="logo-img logo1-img">
         </div>
     </section>
-    <!-- 版权信息 -->
+
     <footer style="width: 100%; padding: 30px 20px; text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0;">
         <p style="color: #64748b; font-size: 14px; font-weight: 500;">
             © 2026 X-Humanoid Team
