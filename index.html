@@ -38,13 +38,11 @@
             color: white;
             font-size: 32px;
         }
-        /* 修改logo图片样式 */
         .logo-image {
             max-width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
-            /* 可根据需要调整最大宽度 */
             max-width: 200px;
         }
         .logo-text {
@@ -132,6 +130,22 @@
             font-weight: 500;
             transition: all 0.2s ease;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        /* 新增：独立的榜单/数据快捷按钮样式 */
+        .quick-jump-btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: 1px solid #1e40af;
+            background: #1e40af;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 8px;
+            transition: all 0.2s ease;
+        }
+        .quick-jump-btn:hover {
+            background: #1e3a8a;
+            border-color: #1e3a8a;
         }
         .btn:hover {
             background: #f8fafc;
@@ -298,12 +312,12 @@
         .logos-container {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 60px; /* 间距增大到60px，可根据需要调整 */
         }
         .logo-img {
-            width: 180px;
-            height: auto;
-            object-fit: contain;
+            width: 280px;
+            height: 120px; /* 自定义高度，根据实际logo比例调整 */
+            object-fit: contain; /* 保持图片比例，不拉伸变形 */
         }
         .logo2-img {
         }
@@ -369,66 +383,53 @@
             font-size: 16px;
         }
         
-        /* 新的外层容器，用于定位箭头 */
+        /* 表格容器核心样式：固定高度，仅表格滚动 */
         .table-scroll-wrapper {
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* 分页箭头样式 - 红框位置版 */
         .data-table-container {
             background: white;
             border-radius: 16px;
             padding: 24px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             overflow-x: auto;
+            /* 核心：固定高度，仅表格区域垂直滚动 */
+            max-height: 600px;
+            overflow-y: auto;
+            /* 滚动条美化 */
+            scrollbar-width: thin;
         }
-        .pagination-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #1e40af; /* 蓝色背景 */
-            color: white;         /* 白色箭头 */
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            transition: all 0.2s;
+        /* 自定义滚动条 */
+        .data-table-container::-webkit-scrollbar {
+            width: 8px;
         }
-        .pagination-arrow.left {
-            left: -45px; /* 向左移动，放在表格左侧红框内 */
+        .data-table-container::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
         }
-        .pagination-arrow.right {
-            right: -45px; /* 向右移动，放在表格右侧红框内 */
-        }
-        .pagination-arrow:hover {
-            background: #1e3a8a; /* 更深的蓝色 */
-        }
-        .pagination-arrow:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
+        .data-table-container::-webkit-scrollbar-thumb {
             background: #94a3b8;
-            color: white;
+            border-radius: 4px;
+        }
+        .data-table-container::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        /* 隐藏分页箭头（不需要分页） */
+        .pagination-arrow {
+            display: none !important;
         }
     </style>
 </head>
 <body>
     <header class="rynn-header">
-        <!-- 修改logo部分：替换文字为图片 -->
         <div class="logo">
             <img src=".\img\20260303-134245.jpg" alt="EPIC-Bench Logo" class="logo-image">
         </div>
         <h1 class="title">
-            <span class="epic-wrapper"><span class="epic-letter">E</span><span class="epic-letter">P</span><span class="epic-letter">I</span><span class="epic-letter">C</span></span>-Bench: <span> What Must LVLMs Perceive </span><br>
-            <span>to Fulfill an Embodied Instruction?</span>
+            <span class="epic-wrapper"><span class="epic-letter">E</span><span class="epic-letter">P</span><span class="epic-letter">I</span><span class="epic-letter">C</span></span>-Bench: <span> Can VLMs Perceive the </span><br>
+            <span>Embodied Real-world?</span>
         </h1>
         <div class="authors">
             <span class="author-name">xxx</span><sup>*</sup>
@@ -464,13 +465,16 @@
                 <img src=".\img\screenshot-20260303-101720.png" alt="modelscope" style="width: 24px; height: 24px; margin-right: 8px; object-fit: contain; vertical-align: middle;">
                 modelscope
             </a>
+            <!-- 新增：独立的榜单/数据快捷按钮（放在四个按钮后面） -->
+            <button class="quick-jump-btn" onclick="goToLeaderboard()">🏆 榜单</button>
+            <button class="quick-jump-btn" onclick="goToData()">📊 数据</button>
         </div>
     </header>
 
     <section class="overview-section">
         <h2 class="overview-title">Overview</h2>
         <img 
-            src="C:\Users\A\Desktop\leaderboard\20260302-192636.png" 
+            src="./img/20260302-192636.png" 
             alt="Leaderboard" 
             style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"
         >
@@ -566,12 +570,14 @@
         </div>
     </section>
 
-    <section class="data-example-section" style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
+    <!-- 榜单区域：保留原有切换按钮，添加ID用于锚点跳转 -->
+    <section id="leaderboard-section" class="data-example-section" style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
         <h2 class="data-example-title" style="font-size: 32px; font-weight: 700; color: #333; text-align: center; margin-bottom: 24px;">Leaderboard And Benchmark</h2>
 
+        <!-- 保留原有榜单/数据切换按钮 -->
         <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 20px;">
             <button class="view-tab" id="tab-rank" style="background: #1e40af; color: white;">🏆榜单</button>
-            <button class="view-tab" id="tab-data" style="background: #fff; color: #1e293b;">数据</button>
+            <button class="view-tab" id="tab-data" style="background: #fff; color: #1e293b;">📊数据</button>
         </div>
 
         <div id="sticky-nav-wrapper" class="data-button-group">
@@ -581,18 +587,15 @@
             <button class="data-btn" id="btn-manip" style="background: white; color: #1e293b;">Manipulation-操作感知</button>
         </div>
 
-        <!-- 新的外层容器 -->
+        <!-- 表格容器 -->
         <div class="table-scroll-wrapper">
-            <!-- 左箭头 - 固定在红框位置 -->
             <button class="pagination-arrow left" id="prev-page">←</button>
-            <!-- 表格容器 -->
             <div class="data-table-container">
                 <table id="data-table" style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1000px; text-align: center;">
                     <thead id="data-table-header"></thead>
                     <tbody id="data-table-body"></tbody>
                 </table>
             </div>
-            <!-- 右箭头 - 固定在红框位置 -->
             <button class="pagination-arrow right" id="next-page">→</button>
         </div>
     </section>
@@ -603,19 +606,16 @@
         // 全局状态
         let currentView = 'rank'; // rank | data
         let currentModule = 'epic';
-        // 排序相关全局变量
         let sortKey = 'Average'; // 默认排序字段
         let sortDirection = 'desc'; // 默认降序（从高到低）
-        // 分页相关变量
-        let pageSize = 35; // 每页显示35个模型
-        let currentPage = 1; // 当前页码
         
         // 模型列表
+        // 替换原来的 fixedModelList
         const fixedModelList = [
-            "Qwen3.5-397B-A17B",
-            "Qwen3.5-122B-A10B",
-            "Qwen3.5-35B-A3B",
-            "Qwen3.5-27B",
+            "Qwen3.5-397B-A17B (思考模式)",
+            "Qwen3.5-122B-A10B (思考模式)",
+            "Qwen3.5-35B-A3B (思考模式)",
+            "Qwen3.5-27B (思考模式)",
             "Qwen3-VL-235B-A22B-Thinking",
             "Qwen3-VL-30B-A3B-Thinking",
             "Qwen3-VL-32B-Thinking",
@@ -632,10 +632,15 @@
             "claude-opus-4-20250514",
             "claude-haiku-4-5-20251001-thinking",
             "claude-opus-4-1-20250805-thinking",
-            "Claude Sonnet 4.6",
-            "doubao-seed-1.8-251228",
-            "doubao-seed-1.6-vision-250615",
+            "claude-sonnet-4-6",
+            "claude-sonnet-4-6-thinking",
             "GLM-4.6V",
+            "Step3-VL-10B",
+            "hunyuan-t1-vision-20250916",
+            "Qwen3.5-397B-A17B",
+            "Qwen3.5-122B-A10B",
+            "Qwen3.5-35B-A3B",
+            "Qwen3.5-27B",
             "Qwen2.5-VL-72B-Instruct",
             "Qwen3-VL-235B-A22B-Instruct",
             "Qwen3-VL-30B-A3B-Instruct",
@@ -663,37 +668,109 @@
             "gemini-3-flash-preview-nothinking",
             "Tencent HY Vision 1.5 Instruct",
             "hunyuan-turbos-vision-20250619",
-            "Step3-VL-10B",
             "RoboBrain2-32B",
             "RoboBrain2-7B",
             "RoboBrain2.5-8B-NV",
             "RoboBrain2.5-8B-MT",
             "Pelican1.0-VL-72B",
-            "RynnBrain-30B-A3B",
-            "RynnBrain-Plan-30B-A3B",
             "RynnBrain-8B",
             "RynnBrain-CoP-8B",
             "RynnBrain-Plan-8B",
             "RynnBrain-2B",
-            "UnifoLM-VLM-Base",
             "Cosmos-Reason1-7B"
         ];
 
         // 生成模拟分数数据（0-100）
+        // 替换原来的 generateMockScores 函数
         function generateMockScores() {
+            // 真实的 EPIC 分数数据（对应你提供的表格）
+            const realEPICScores = {
+                "Qwen3.5-397B-A17B (思考模式)": [47.47,55.45,51.82,42.18,51.1,60.11,45.35,12.4,26.33,42.51],
+                "Qwen3.5-122B-A10B (思考模式)": [47.24,53.61,49.13,41.16,51.42,63.47,45.19,12.31,46.04,39.77],
+                "Qwen3.5-35B-A3B (思考模式)": [45.58,53.51,49.18,39.03,43.09,61.17,41.18,10.75,41.7,38.05],
+                "Qwen3.5-27B (思考模式)": [45.67,54.15,50.03,40.61,46.96,39.43,46.77,13.15,49.56,39.84],
+                "Qwen3-VL-235B-A22B-Thinking": [50.93,58,55.67,48.12,48.18,51.19,49.01,16.96,48.04,46.49],
+                "Qwen3-VL-30B-A3B-Thinking": [44.02,52.69,49.37,40.87,42.34,41.65,36.2,10.62,38.78,40.72],
+                "Qwen3-VL-32B-Thinking": [37.21,39.94,41.26,36.05,31.03,42.04,39.07,4.84,35.23,40.03],
+                "Qwen3-VL-8B-Thinking": [35.55,39.92,41.66,33.89,21.68,38.51,34.94,5.22,32.05,37.01],
+                "Qwen3-VL-4B-Thinking": [33.82,38.82,40.29,32.93,17.55,35.58,32.78,3.91,25.3,36.56],
+                "Qwen3-VL-2B-Thinking": [31.82,39.67,40.75,30.08,15.36,24.02,22.59,6.07,28.24,28.97],
+                "gpt-4o": [29.52,27.42,35.99,26.69,26.95,32.45,36.36,2.18,33.22,34.5],
+                "o4-mini": [32.83,36.75,38.02,32.73,18.27,20.49,45.63,3.54,33.58,38.75],
+                "o3": [36.05,39.37,40.96,32.86,36.24,30.64,40.73,5.49,32.43,43.64],
+                "gemini-2.5-pro": [37.63,42.86,41.62,36.43,9.63,46.29,42.7,8.72,33.94,42.78],
+                "gemini-2.5-flash-lite": [34.77,39.06,39.53,31.51,35.97,40.21,33.02,2.58,30.17,32.38],
+                "gemini-3-flash-preview": [44.69,50.26,41.7,37.79,51.11,52.63,49.92,22.62,46.51,50.89],
+                "Gemini 3.1 Pro-preview": [54.72,55.38,56.65,53.04,47.22,70.32,59.06,28.89,53.7,55.25],
+                "claude-opus-4-20250514": [29.1,28.95,35.23,27.14,13.83,32.07,37.45,2.4,35.25,33.47],
+                "claude-haiku-4-5-20251001-thinking": [29.82,30.59,34.88,27.71,17.32,36.65,37.27,2.88,27.66,34.81],
+                "claude-opus-4-1-20250805-thinking": [29.1,28.95,35.23,27.14,13.83,32.07,37.45,2.4,35.25,33.47],
+                "claude-sonnet-4-6": [40.6,45.27,45.54,36.71,38.08,39.45,43.07,8.16,41.11,42.73],
+                "claude-sonnet-4-6-thinking": [43.24,45.43,45.49,36.47,40.16,68.46,42.77,9.79,46.21,43.81],
+                "GLM-4.6V": [42.84,50.19,47.71,37.89,42.46,51.11,36.55,8.32,34.14,39.79],
+                "Step3-VL-10B": [35.94,42.65,41.02,36.38,24.79,39.88,26.67,5.95,31.52,29.24],
+                "hunyuan-t1-vision-20250916": [43,51.24,47.6,39.67,42.63,50.08,33.54,6.63,38.95,34.49],
+                "Qwen3.5-397B-A17B": [45.16,50.56,50.06,43.45,51.94,50.61,41.46,8.31,34.51,37.08],
+                "Qwen3.5-122B-A10B": [44.54,50.77,49.28,42.31,49.65,50.5,42.62,8.3,36.91,32.16],
+                "Qwen3.5-35B-A3B": [41.32,46.76,45.82,38.19,48,45.47,37.01,10.01,36.94,32.36],
+                "Qwen3.5-27B": [44.71,49.1,48.55,42.23,49.74,53.5,44.1,11.93,37.22,36.42],
+                "Qwen2.5-VL-72B-Instruct": [42.51,47.54,49.79,40.92,49.45,42.49,37.08,14.77,21.21,35.9],
+                "Qwen3-VL-235B-A22B-Instruct": [42.64,50.12,45.86,39.34,50.96,43.14,38.69,12,34.55,35.71],
+                "Qwen3-VL-30B-A3B-Instruct": [30.6,28.31,34.27,25.04,49.37,37.09,30.12,9.33,31.49,34.07],
+                "Qwen3-VL-32B-Instruct": [35.21,37.49,39.82,33.21,44.38,36.74,36.57,4.72,30.62,30.49],
+                "Qwen3-VL-8B-Instruct": [34.07,39.48,42.54,32.1,38.11,26.67,31.84,5.19,14.63,30.91],
+                "Qwen3-VL-4B-Instruct": [33.24,39.95,41.55,33.78,40.39,18.45,30.17,3.2,11.3,27],
+                "Qwen3-VL-2B-Instruct": [32.53,38.43,42.87,29.08,37.55,9.78,28.55,7.99,29.56,29.59],
+                "gpt-5-mini-2025-08-07": [35.21,38.7,39.43,30.24,24.36,38.53,45.97,3.86,41.32,38.78],
+                "GPT5.1": [34.81,35.31,39.66,32.05,36.62,38.62,44.69,4.34,26.44,38.63],
+                "GPT5.2": [36.82,38.26,41.53,32.02,33.06,48.72,44.1,5.01,35.25,37.26],
+                "InternVL3.5-8B": [33.58,40.67,45.4,32.05,32.15,22.77,15.94,10.79,17.42,25.57],
+                "InternVL3.5-14B": [38.92,43.95,49.96,37.13,46.11,31.82,24.57,11.23,25.98,28.66],
+                "InternVL3.5-38B": [42.54,48.69,52.6,39.95,43.21,35.01,28.07,17.22,34.05,35.83],
+                "InternVL3.5-30B-A3B": [29.71,30.96,39.11,27.03,45.43,24.11,17.24,8.41,18.75,25.3],
+                "InternVL3.5-241B-A28B": [40.75,44.65,50.59,37.61,35.94,35.47,33.73,16.85,36.41,37.6],
+                "InternVL3-8B": [30.23,35.51,40.72,26.69,33.38,21.53,23.16,3.83,16.08,26.07],
+                "InternVL3-14B": [30.17,31.98,38.44,25.41,32.29,29.53,27.64,3.25,27.49,31.19],
+                "InternVL3-38B": [28.5,34.88,28.85,23.22,36.69,22.31,34.88,3.99,30.43,30.44],
+                "InternVL3-78B": [36.04,40.68,44.56,32.78,35.98,30.55,34.93,6.9,29.07,31.69],
+                "LLaVA-next-72b 2025.1": [20.4,26.54,29.42,19.93,14.18,6.34,6.19,2.99,12.75,18.63],
+                "Gemma-3-4B-IT": [23.5,21.79,31.48,22.31,8.04,27.53,22.04,0.97,28.8,29.59],
+                "Gemma-3-12B-IT": [26.21,25.55,32.44,24.59,13.71,36.27,23.39,1.3,27.48,31.43],
+                "Gemma-3-27B-IT": [27.17,26.93,33.66,26.68,11.62,32.17,26.33,1.65,31.26,32.18],
+                "gemini-2.5-flash-nothinking": [36.33,38.46,39.16,34.05,27.28,51.98,40.79,2.88,37.15,36.28],
+                "gemini-3-flash-preview-nothinking": [37.04,46.4,31.48,32.29,48.98,22.89,47.25,11.91,42.29,48.09],
+                "Tencent HY Vision 1.5 Instruct": [32.55,38.37,39.6,29.67,31.72,17.07,35.71,6.38,32.88,29.25],
+                "hunyuan-turbos-vision-20250619": [24.61,24.72,33.33,25.58,4.49,17.88,36.14,0.67,22.02,26.69],
+                "RoboBrain2-32B": [39.32,50.66,49.67,38.83,38.85,0.61,37.63,0.08,36.22,39.61],
+                "RoboBrain2-7B": [30.09,35.93,36.01,30.52,42.92,0,24.31,2.29,31.58,32.95],
+                "RoboBrain2.5-8B-NV": [23.81,24.81,32.88,24.97,22.57,1.66,27.98,1.13,24.98,24.03],
+                "RoboBrain2.5-8B-MT": [29.83,31.2,37.41,26.76,33.52,30.89,27.84,2.65,25.45,24.34],
+                "Pelican1.0-VL-72B": [35.29,44.08,42.11,34.79,44.91,0,38.13,7.32,22.68,37.96],
+                "RynnBrain-8B": [22.34,28.31,33.28,24.81,7.98,5.95,15.04,0.13,13.84,11.26],
+                "RynnBrain-CoP-8B": [16.83,12.48,21.78,16.08,21.51,22.51,13.58,0.28,19.62,18.09],
+                "RynnBrain-Plan-8B": [23.59,23.53,32.53,26.08,2.12,19.57,21.41,0.11,18.79,31.02],
+                "RynnBrain-2B": [12.05,12.84,16.49,17.07,0,7.1,13.35,0.01,8.73,12.45],
+                "Cosmos-Reason1-7B": [23.25,29.74,26.64,19.67,24.68,3.03,25.44,5.37,22.12,32.75]
+            };
+
             const mockScores = {};
-            fixedModelList.forEach(model => {
+            // 遍历所有模型
+            Object.keys(realEPICScores).forEach(model => {
+                const scores = realEPICScores[model];
                 mockScores[model] = {
-                    Average: Math.floor(Math.random() * 100),
-                    Basic: Math.floor(Math.random() * 100),
-                    SpatialRelated: Math.floor(Math.random() * 100),
-                    EmbodiedCompositional: Math.floor(Math.random() * 100),
-                    GroundDetection: Math.floor(Math.random() * 100),
-                    FeasiblePath: Math.floor(Math.random() * 100),
-                    VisualMatching: Math.floor(Math.random() * 100),
-                    Affordance: Math.floor(Math.random() * 100),
-                    ContactRelationship: Math.floor(Math.random() * 100),
-                    PlacementRegion: Math.floor(Math.random() * 100),
+                    // EPIC 字段（对应真实分数）
+                    Average: scores[0],
+                    Basic: scores[1],
+                    SpatialRelated: scores[2],
+                    EmbodiedCompositional: scores[3],
+                    GroundDetection: scores[4],
+                    FeasiblePath: scores[5],
+                    VisualMatching: scores[6],
+                    Affordance: scores[7],
+                    ContactRelationship: scores[8],
+                    PlacementRegion: scores[9],
+                    
+                    // TargetLocalization 字段（保持原有随机值，不修改）
                     Category: Math.floor(Math.random() * 100),
                     Color: Math.floor(Math.random() * 100),
                     Geometry: Math.floor(Math.random() * 100),
@@ -761,12 +838,13 @@
         };
 
         // 排序函数
+        // 在 sortModels 函数中，确保处理浮点数排序
         function sortModels(module, key, direction) {
             const modelsWithScores = fixedModelList.filter(model => modelScores[model]);
             
             return modelsWithScores.sort((a, b) => {
-                const scoreA = modelScores[a][key] || 0;
-                const scoreB = modelScores[b][key] || 0;
+                const scoreA = parseFloat(modelScores[a][key]) || 0;
+                const scoreB = parseFloat(modelScores[b][key]) || 0;
                 
                 if (direction === 'asc') {
                     return scoreA - scoreB; // 升序
@@ -774,19 +852,6 @@
                     return scoreB - scoreA; // 降序
                 }
             });
-        }
-
-        // 更新分页按钮状态
-        function updatePaginationButtons() {
-            const sortedModels = sortModels(currentModule, sortKey, sortDirection);
-            const totalPages = Math.ceil(sortedModels.length / pageSize);
-            
-            const prevBtn = document.getElementById('prev-page');
-            const nextBtn = document.getElementById('next-page');
-            
-            // 禁用/启用按钮
-            prevBtn.disabled = currentPage <= 1;
-            nextBtn.disabled = currentPage >= totalPages;
         }
 
         // 渲染表头
@@ -826,8 +891,6 @@
                             sortKey = col.key;
                             sortDirection = 'desc';
                         }
-                        // 排序后重置到第一页
-                        currentPage = 1;
                         refreshTable();
                     });
                 }
@@ -838,25 +901,17 @@
             thead.appendChild(tr);
         }
 
-        // 渲染表格内容（带分页）
+        // 渲染表格内容（显示所有模型，表格容器滚动）
         function renderBody(module, view) {
             const tbody = document.getElementById('data-table-body');
             tbody.innerHTML = '';
             const columns = moduleColumnConfigs[module];
             const sortedModels = sortModels(module, sortKey, sortDirection);
-            
-            // 计算分页
-            const total = sortedModels.length;
-            const totalPages = Math.ceil(total / pageSize);
-            const start = (currentPage - 1) * pageSize;
-            const end = Math.min(start + pageSize, total);
-            const pageModels = sortedModels.slice(start, end);
 
-            pageModels.forEach((model, idxInPage) => {
-                // 计算全局索引（用于排名和奖牌）
-                const globalIdx = start + idxInPage;
+            // 渲染所有模型（不再限制数量，表格容器滚动显示）
+            sortedModels.forEach((model, globalIdx) => {
                 const tr = document.createElement('tr');
-                tr.style.background = idxInPage % 2 === 0 ? '#fff' : '#f8fafc';
+                tr.style.background = globalIdx % 2 === 0 ? '#fff' : '#f8fafc';
                 tr.style.borderBottom = '1px solid #e2e8f0';
                 
                 // 前三名背景色
@@ -888,7 +943,7 @@
                         if (globalIdx < 3) td.style.fontWeight = '700';
                     } else {
                         if (view === 'rank') {
-                            const score = modelScores[model][col.key] || '-';
+                            const score = modelScores[model][col.key] ?? '-';
                             td.textContent = score;
                             td.style.color = '#1e293b';
                             if (globalIdx < 3) td.style.fontWeight = '600';
@@ -901,9 +956,6 @@
                 });
                 tbody.appendChild(tr);
             });
-            
-            // 更新分页按钮状态
-            updatePaginationButtons();
         }
 
         // 刷新表格
@@ -912,29 +964,7 @@
             renderBody(currentModule, currentView);
         }
 
-        // 绑定分页按钮事件
-        function bindPaginationEvents() {
-            // 上一页
-            document.getElementById('prev-page').addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    refreshTable();
-                }
-            });
-            
-            // 下一页
-            document.getElementById('next-page').addEventListener('click', () => {
-                const sortedModels = sortModels(currentModule, sortKey, sortDirection);
-                const totalPages = Math.ceil(sortedModels.length / pageSize);
-                
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    refreshTable();
-                }
-            });
-        }
-
-        // 榜单/数据切换
+        // 榜单/数据切换（保留原有功能）
         document.querySelectorAll('.view-tab').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.view-tab').forEach(b => {
@@ -947,8 +977,6 @@
                 btn.style.border = 'none';
 
                 currentView = btn.id === 'tab-rank' ? 'rank' : 'data';
-                // 切换视图后重置到第一页
-                currentPage = 1;
                 refreshTable();
             });
         });
@@ -984,8 +1012,6 @@
                         sortDirection = 'desc';
                     }
                     
-                    // 切换模块后重置到第一页
-                    currentPage = 1;
                     refreshTable();
                 });
             });
@@ -1026,14 +1052,24 @@
 
         // 初始化
         function init() {
-            // 绑定分页事件
-            bindPaginationEvents();
             // 初始化粘性导航
             initStickyNav();
             // 刷新表格
             refreshTable();
         }
+        // 跳转到榜单：自动切换到 榜单视图 + EPIC-Bench
+        function goToLeaderboard() {
+        document.getElementById('tab-rank').click();
+        document.getElementById('btn-epic').click();
+        document.getElementById('leaderboard-section').scrollIntoView({ behavior: 'smooth' });
+        }
 
+        // 跳转到数据：自动切换到 数据视图 + EPIC-Bench
+        function goToData() {
+        document.getElementById('tab-data').click();
+        document.getElementById('btn-epic').click();
+        document.getElementById('leaderboard-section').scrollIntoView({ behavior: 'smooth' });
+        }
         // 页面加载完成后初始化
         window.addEventListener('DOMContentLoaded', init);
     </script>
@@ -1048,11 +1084,11 @@
             </div>
             <div style="background: #f8fafc; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 14px; line-height: 1.6; color: #1e293b; overflow-x: auto;">
                 <pre style="margin: 0;">
-    @article{xie2025core,
-    title={CORE: Benchmarking LLMs Code Reasoning Capabilities through Static Analysis Tasks},
-    author={Xie, Danning and Zheng, Mingwei and Liu, Xuwei and Wang, Jiannan and Wang, Chengpeng and Tan, Lin and Zhang, ...},
-    journal={arXiv preprint arXiv:2507.05269},
-    year={2025}
+    @article{xxx,
+    title={xxx},
+    author={xxx},
+    journal={xxx},
+    year={2026}
     }
                 </pre>
             </div>
