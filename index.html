@@ -577,7 +577,7 @@
         <!-- 保留原有榜单/数据切换按钮 -->
         <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 20px;">
             <button class="view-tab" id="tab-rank" style="background: #1e40af; color: white;">🏆榜单</button>
-            <button class="view-tab" id="tab-data" style="background: #fff; color: #1e293b;">📊数据</button>
+            <button class="view-tab" id="tab-data" style="background: #fff; color: #1e293b;">数据</button>
         </div>
 
         <div id="sticky-nav-wrapper" class="data-button-group">
@@ -677,7 +677,13 @@
             "RynnBrain-CoP-8B",
             "RynnBrain-Plan-8B",
             "RynnBrain-2B",
-            "Cosmos-Reason1-7B"
+            "Cosmos-Reason1-7B",
+            "Doubao-seed-1.8-251228",
+            "Doubao-seed-1.6-vision-250615",
+            "Qwen3.5-9B",
+            "Qwen3.5-4B",
+            "Qwen3.5-2B",
+            "Qwen3.5-0.8B"
         ];
 
         // 生成模拟分数数据（0-100）
@@ -750,7 +756,13 @@
                 "RynnBrain-CoP-8B": [16.83,12.48,21.78,16.08,21.51,22.51,13.58,0.28,19.62,18.09],
                 "RynnBrain-Plan-8B": [23.59,23.53,32.53,26.08,2.12,19.57,21.41,0.11,18.79,31.02],
                 "RynnBrain-2B": [12.05,12.84,16.49,17.07,0,7.1,13.35,0.01,8.73,12.45],
-                "Cosmos-Reason1-7B": [23.25,29.74,26.64,19.67,24.68,3.03,25.44,5.37,22.12,32.75]
+                "Cosmos-Reason1-7B": [23.25,29.74,26.64,19.67,24.68,3.03,25.44,5.37,22.12,32.75],
+                "Doubao-seed-1.8-251228":[46.32,55.29,49.68,46.1,46.02,53.43,45.9,10.94,14.36,40.79],
+                "Doubao-seed-1.6-vision-250615":[46.8,54.64,49.92,42.27,41.64,58.74,42.66,9.52,47.48,41.62],
+                "Qwen3.5-9B":[35.45,40.49,42.04,31.9,38.07,36.81,33.93,6.09,26.7,28.25],
+                "Qwen3.5-4B":[33.27,39.84,40.87,30.04,33.7,29.66,32.54,5.56,17.6,26.49],
+                "Qwen3.5-2B":[23.12,26.93,32.91,25.11,7.84,3.72,22.43,0.37,20.64,24.09],
+                "Qwen3.5-0.8B":[4.89,2.58,4.62,2.05,0.15,4.94,11.33,0.57,13.12,20.67]
             };
 
             const mockScores = {};
@@ -1084,11 +1096,11 @@
             </div>
             <div style="background: #f8fafc; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 14px; line-height: 1.6; color: #1e293b; overflow-x: auto;">
                 <pre style="margin: 0;">
-    @article{xxx,
-    title={xxx},
-    author={xxx},
-    journal={xxx},
-    year={2026}
+    @article{xie2025core,
+    title={CORE: Benchmarking LLMs Code Reasoning Capabilities through Static Analysis Tasks},
+    author={Xie, Danning and Zheng, Mingwei and Liu, Xuwei and Wang, Jiannan and Wang, Chengpeng and Tan, Lin and Zhang, ...},
+    journal={arXiv preprint arXiv:2507.05269},
+    year={2025}
     }
                 </pre>
             </div>
